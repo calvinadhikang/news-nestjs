@@ -3,17 +3,18 @@ import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { NewsModule } from './news/news.module';
 import { TypeOrmModule } from '@nestjs/typeorm';
+import { NewsEntity } from './entities/news.entity';
 
 @Module({
   imports: [
     TypeOrmModule.forRoot({
       type: 'mysql',
-      host: 'kelompok5-istts:asia-southeast2:myinstance ',
+      host: '34.101.187.72',
       port: 3306,
       username: 'root',
       password: '',
       database: 'news',
-      entities: [],
+      entities: [NewsEntity],
       synchronize: true
     }),
     NewsModule

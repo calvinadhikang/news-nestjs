@@ -1,5 +1,6 @@
+import { CreateNewsDto } from './dto/create-news.dto';
 import { NewsService } from './news.service';
-import { Controller, Get } from '@nestjs/common';
+import { Body, Controller, Get, Post } from '@nestjs/common';
 
 @Controller('news')
 export class NewsController {
@@ -8,5 +9,13 @@ export class NewsController {
     @Get()
     getNews(){
         return this.newsService.getAll();
+    }
+
+    @Post()
+    async createNews(@Body() createNewsDto: CreateNewsDto) {
+        const newNews = await this.newsService.createNews(createNewsDto);
+        return {
+            news: newNews
+        }
     }
 }
